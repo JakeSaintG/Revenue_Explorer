@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:revenue_explorer/theme.dart';
 import 'package:theme_provider/theme_provider.dart';
 
+import 'router.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,10 +23,12 @@ class MyApp extends StatelessWidget {
       ],
       child: ThemeConsumer(
         child: Builder(
-          builder: (themeContext) => MaterialApp(
+          builder: (themeContext) => MaterialApp.router(
             title: 'Flutter Demo',
             theme: ThemeProvider.themeOf(themeContext).data,
-            home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            routeInformationParser: revexRouter.routeInformationParser,
+            routeInformationProvider: revexRouter.routeInformationProvider,
+            routerDelegate: revexRouter.routerDelegate,
           ),
         ),
       ),
